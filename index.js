@@ -3,6 +3,7 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./jsoon/config.json');
 const { id } = require('./jsoon/config.json');
+const { region } = require('./jsoon/config.json');
 const schedule = require('node-schedule');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -10,7 +11,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.once(Events.ClientReady, readyClient => {
 	console.log(`QGM запущен, не забудьте поставить звёздочку! https://github.com/ZizaRDev/QG`);
   client.user.setPresence({ activities: [{ name: 'QGM made it ZizaRDev 🩸' }], status: 'dnd' });
-  const job = schedule.scheduleJob('0 8/8 * * * *', function(){
+  const job = schedule.scheduleJob({hour: 8, minute: 0, tz: region}, function(){
   fs.readFile('./jsoon/quotes.json', 'utf8', (err, data) => {
     if (err) {
       console.error('Ошибка чтения файла:', err);
