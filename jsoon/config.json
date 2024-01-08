@@ -1,3 +1,5 @@
 {
   "token": "Paste the bot token",
-  "id": "Insert your ID"
+  "id": "Insert your ID",
+  "region": "Insert your region here"
+}
